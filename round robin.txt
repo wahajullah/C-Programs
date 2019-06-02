@@ -1,0 +1,42 @@
+#includestdio.h
+#includeconio.h
+void main()
+{
+int et[30],ts,n,i,X=0,tot=0;char pn[10][10];
+clrscr();
+printf(Enter the no of processess n);
+scanf(%d,&n);
+printf(Enter the time quantumn);
+scanf(%d,&ts);
+for(i=0;in;i++)
+{
+printf(Enter process name and estimated time);
+scanf(%s %d,&pn[i],& et[i]);
+}
+printf(The processes arenn);
+for(i=0;in;i++)
+{
+printf(Process %d%sn,i+1,pn[i]);
+}
+for(i=0;in;i++)
+tot=tot+et[i];
+while(X!=tot)
+{
+for(i=0;in;i++)
+{
+if(et[i]ts)
+{
+X=X+ts;
+printf(n%s -%d,pn[i],ts);
+et[i]=et[i]-ts;
+}
+else if((et[i]=ts)&&et[i]!=0)
+{
+X=X+et[i];
+printf(n%s -%d,pn[i],et[i]=0);
+}
+}
+}
+printf(nTotal Estimated Time%d,X);
+getch();
+}

@@ -1,0 +1,148 @@
+#include<stdio.h>1
+#include<stdlib.h>
+#define Esc 27
+struct node
+{
+int data;
+struct node *next;
+}*head=NULL,*last;
+void create_node();
+int search();
+void delete_node();
+void display();
+//-------------------------------------------------
+int main()
+{
+struct node *temp;
+int i;
+char ch;
+clrscr();
+while(1)
+{
+printf("\n\n <@> Main Menu <@>\n");
+printf(" ******************\n");
+printf("\n\t1.Create Node\n\t2.Seacrh Node\n\t3.Delete node\n\t4.Display.\n\tPress ESC toExit\n");
+printf("\n Please choose, what kind of work you want to do?");
+ch=getch();
+switch(ch)
+{
+case '1':
+create_node();
+break;
+case '2':
+search();
+break;
+case '3':
+delete_node();
+break;
+case '4':
+display();
+break;
+case Esc:
+exit(1);
+default:
+printf("Invalid Input/ choice.");
+}
+}
+return 0;
+}
+//-------------------------------------------------
+void create_node()
+{
+struct node *new_node;
+char ch;
+do
+{
+new_node=(struct node *)malloc(sizeof(struct node));
+printf("\n Enter the data:");
+scanf("%d",&new_node->data);
+new_node->next=NULL;
+if(head==NULL)
+{
+head=new_node;
+last=new_node;
+}
+else
+{
+last->next=new_node;
+last=new_node;
+}
+printf("\n To create again press any key, if not press Space.\n");
+ch=getch();
+}
+while(ch!=32);
+}
+//------------------------------------------
+int search()
+{
+int svalue,i=0;
+struct node *temp;
+printf("\n Search: ");
+scanf("%d",&svalue);
+temp=head;
+while(temp!=NULL)
+{
+i++;
+if(svalue==temp->data)
+{
+printf("\n Searched value %d found in the location of %d. ",svalue,i);
+return i;
+}
+temp=temp->next;
+}
+printf("\n Not found %d in Linked List.",svalue);
+return 0;
+}
+//---------------------------------------------
+void delete_node()
+{
+struct node *temp=head,*prev;
+int i,position=search();
+if(position==0)
+printf("\n ERROR!!!(Node not found)");
+else if(position==1)
+{
+head=temp->next;
+free(temp);
+printf("\n Head node successfully deleted.");
+}
+else
+{
+for(i=1; i<=position; i++)
+{
+if(i==position)
+{
+if(temp==last)
+{
+prev->next=NULL;
+last=prev;
+free(temp);
+printf("\n Tail Node succesfully deleted.");
+}
+else
+{
+prev->next=temp->next;
+free(temp);
+printf("\n Node succesfully deleted.");
+}
+}
+prev=temp;
+temp=temp->next;}
+}  }
+//--------------------------------------------
+void display()
+{
+struct node *temp;
+if(head==NULL)
+printf("\n Linked List is empty.");
+else
+{
+printf("\n\t Linked List:\n\t-------------\n");
+temp=head;
+while(temp!=NULL)
+{
+printf("\t=>\t%d\n",temp->data);
+temp=temp->next;
+}
+}
+}

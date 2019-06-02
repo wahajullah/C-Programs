@@ -1,0 +1,38 @@
+#include<process.h>
+#include<dos.h>
+#include<stdio.h>
+#include<conio.h>
+#include<dir.h>
+#include<io.h>
+void main()
+{
+ char name[10],c,ch;
+ unsigned attrib;
+ int d,n,f,p;
+ clrscr();
+ printf("\t\t Main Menu of Permission\n");
+ printf("1.Only Read\n2.Only Write\n3.Exit\nEnter your choice:\n");
+ scanf("%d",&n);
+ switch(n)
+ {
+ case 1:
+ printf("\nEnter the File Name:\n");
+ scanf("%s",&name);
+ attrib|=_A_RDONLY;
+ printf("%s File read permission accepted",name);
+ break;
+ case 2:
+ printf("\nEnter the file name:\n");
+ scanf("%s",&name);
+ attrib=_A_ARCH;
+ printf("%s execute permission accepted",name);
+ break;
+ case 3:
+ exit(0);}
+ if(_dos_setfileattr(name,attrib)!=0)
+ {
+ perror("\nunable to set");
+ getch();
+ return 0;
+ }
+ }

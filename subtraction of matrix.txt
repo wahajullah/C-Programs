@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<conio.h>
+void main ()
+{
+int m, n, p, q, c, d, k, sub = 0;
+int first[10][10], second[10][10], subtraction[10][10];
+clrscr();
+printf("Enter the number of rows and columns of first matrix\n");
+scanf("%d%d",&m,&n);
+printf("Enter the elements of first matrix\n");
+for (c = 0; c < m; c++)
+for (d = 0; d < n; d++)
+scanf("%d", &first[c][d]);
+printf("Enter the number of rows and columns of second matrix\n");
+scanf("%d%d",&p,&q);
+{
+printf("Enter the elements of second matrix\n");
+for (c = 0; c < p; c++)
+for (d = 0; d < q; d++)
+scanf("%d", &second[c][d]);
+for (c = 0; c < m; c++) {
+for (d = 0; d <q; d++) {
+for (k = 0; k < p; k++) {
+sub = sub + first[c][k]*second[k][d];}
+subtraction[c][d] = first[c][d] - second[c][d];
+sub = 0;}}
+printf("Final result:\n");
+for (c = 0; c<m; c++) {
+for (d = 0; d <q; d++)
+printf("%d\t",subtraction[c][d]);
+printf("\n");}}
+getch();
+}

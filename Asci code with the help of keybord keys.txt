@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	char ch;
+	printf("Press a key\n");
+	ch=getch();
+	printf("\nascii code = %d",ch);
+	if ( ch==0)		//checks if ascii is 0 
+	{
+		ch=getch();		//ch receives the scan code
+		printf("\nscan code = %d\n",ch);
+	}
+getch();
+}
+
